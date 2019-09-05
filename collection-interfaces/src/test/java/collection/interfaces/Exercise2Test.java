@@ -56,7 +56,7 @@ public class Exercise2Test {
          * Merge 2 entry to {@link map} with key="Alice" value=32, key="Joe" value=32 using {@link Map#merge}.
          * If the value already exist for the key, remap with sum value.
          */
-        BiFunction<Integer, Integer, Integer> remappingFunction = (oldVal, newVal) -> oldVal + newVal;
+        BiFunction<Integer, Integer, Integer> remappingFunction = Integer::sum;
         map.merge("Alice", 32, remappingFunction);
         map.merge("Joe", 32, remappingFunction);
         
@@ -71,7 +71,7 @@ public class Exercise2Test {
         /**
          * Try to increment the value for keys "Joe", "Steven" and "Alice" using {@link Map#computeIfPresent}.
          */
-        BiFunction<Object, Integer, Integer> remappingFunction = (key, val) -> ++val;
+        BiFunction<String, Integer, Integer> remappingFunction = (key, val) -> ++val;
          map.computeIfPresent("Joe", remappingFunction);
          map.computeIfPresent("Steven", remappingFunction);
          map.computeIfPresent("Alice", remappingFunction);

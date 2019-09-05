@@ -24,7 +24,7 @@ public class Exercise3Test extends ClassicOnlineStore {
         /**
          * Count how many items there are in {@link Customer.wantToBuy} using {@link Stream#count}
          */
-        long sum = customerList.stream().flatMap(c-> c.getWantToBuy().stream()).map(Item::getName).count();
+        long sum = customerList.stream().flatMap(c-> c.getWantToBuy().stream()).count();
 
         assertThat(sum, is(32L));
     }
