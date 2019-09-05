@@ -111,13 +111,13 @@ public class Exercise9Test extends ClassicOnlineStore {
 	@Difficult
 	@Test
 	public void bitList2BitString() {
-		String bitList = "1,2-5,8";//11111001
+		String bitList = "22-24,9,42-44,11,4,46,14-17,5,2,38-40,33,50,48";
 		//String bitList = "9,10-11";
 
 		Collector<String, ?, String> toBitString = new BitList2BitStringCollector();
 
 		String bitString = Arrays.stream(bitList.split(",")).collect(toBitString);
-		assertThat(bitString, is("11111001")
+		assertThat(bitString, is("01011000101001111000011100000000100001110111010101")
 
 		);
 	}
