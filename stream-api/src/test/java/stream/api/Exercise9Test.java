@@ -111,8 +111,8 @@ public class Exercise9Test extends ClassicOnlineStore {
 	@Difficult
 	@Test
 	public void bitList2BitString() {
-		//String bitList = "22-24,9,42-44,11,4,46,14-17,5,2,38-40,33,50,48";
-		String bitList = "9,10-11";
+		String bitList = "22-24,9,42-44,11,4,46,14-17,5,2,38-40,33,50,48";
+		//String bitList = "9,10-11";
 
 		Collector<String, ?, String> toBitString = new BitList2BitStringCollector();
 
@@ -124,7 +124,7 @@ public class Exercise9Test extends ClassicOnlineStore {
 
 	static class BitList2BitStringCollector implements Collector<String, StringBuilder, String> {
 
-
+		 static StringBuilder stringBuilder = new StringBuilder();
 		@Override
 		public Supplier<StringBuilder> supplier() {
 			return StringBuilder::new;
@@ -141,12 +141,13 @@ public class Exercise9Test extends ClassicOnlineStore {
 					range = Arrays.stream(values).toArray();
 				}
 
-				int maxSize = Math.max(sb.length(), NumberUtils.max(range));
+				int maxSize = Math.max(stringBuilder.length(), NumberUtils.max(range));
 
 				for (int i = 0; i < range.length; i++) {
-					sb = new StringBuilder(StringUtils.rightPad(sb.toString(), maxSize, '0'));
+					sb = new StringBuilder(StringUtils.rightPad(stringBuilder.toString(), maxSize, '0'));
 					String value = StringUtils.rightPad(toBinaryString(range[i]), maxSize, '0');
-					sb = orOperator(sb.toString(), value);
+					stringBuilder = orOperator(sb.toString(), value);
+					
 
 				}
 
@@ -160,7 +161,7 @@ public class Exercise9Test extends ClassicOnlineStore {
 
 		@Override
 		public Function<StringBuilder, String> finisher() {
-			return sb -> sb.toString();
+			return sb -> stringBuilder.toString();
 		}
 
 		@Override
